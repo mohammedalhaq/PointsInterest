@@ -12,9 +12,12 @@ import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -43,7 +46,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Button confirm = findViewById(R.id.confirmButton);
         locationSearch = findViewById(R.id.editText);
 
+
+        locationSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    onMapSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        //to open the map on the users current location
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, this);
         Criteria criteria = new Criteria();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MapsActivity.this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},0);
@@ -70,11 +87,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
 
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
+        try {
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-
-    public void onMapSearch(View view) {
+    //searches map for the specified location
+    public void onMapSearch() {
         String location = locationSearch.getText().toString();
         List<Address> addressList = null;
 
@@ -95,6 +116,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    //confirms entry
     public void confirm(View view){
         Intent intent = new Intent(MapsActivity.this, FormActivity.class);
         intent.putExtra("location", locationSearch.getText().toString());

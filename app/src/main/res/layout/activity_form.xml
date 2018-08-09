@@ -10,11 +10,12 @@
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textPersonName"
+        android:text="test"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,11 +23,11 @@
         android:id="@+id/loc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="72dp"
         android:ems="10"
+        android:focusable="false"
         android:hint="Location"
         android:inputType="textPersonName"
-        android:focusable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
 
@@ -34,7 +35,7 @@
         android:id="@+id/notes"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="72dp"
         android:ems="10"
         android:hint="Notes"
         android:inputType="textMultiLine"

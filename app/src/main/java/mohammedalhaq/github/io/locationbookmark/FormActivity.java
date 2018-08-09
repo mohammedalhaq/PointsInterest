@@ -1,6 +1,8 @@
 package mohammedalhaq.github.io.locationbookmark;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,7 +26,6 @@ public class FormActivity extends AppCompatActivity {
         notes = findViewById(R.id.notes);
 
 
-
         locationText.setText(loc, TextView.BufferType.EDITABLE);
         locationText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +37,7 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
+        //toggles so that tapping opens maps or edittext
         locationText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -50,12 +52,18 @@ public class FormActivity extends AppCompatActivity {
         });
     }
 
+
+    //add changes
     public void confirm(View view){
         Intent intent = new Intent(FormActivity.this, MainActivity.class);
+
         intent.putExtra("title", nameText.getText().toString());
         intent.putExtra("location", locationText.getText().toString());
         intent.putExtra("notes", notes.getText().toString());
+
         Toast.makeText(this, locationText.getText().toString() + " added", Toast.LENGTH_SHORT).show();
         startActivity(intent);
+
     }
+
 }

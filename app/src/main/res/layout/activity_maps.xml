@@ -18,17 +18,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="4"
             android:hint="Search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:text="523 Caboto Trail" />
 
-
-        <Button
-            android:id="@+id/searchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:onClick="onMapSearch"
-            android:text="Search"
-            />
 
         <Button
             android:id="@+id/confirmButton"

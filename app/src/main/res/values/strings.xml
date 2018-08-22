@@ -2,4 +2,5 @@
     <string name="app_name">LocationBookmark</string>
     <string name="title_activity_maps">Map</string>
     <string name="search_hint">Search</string>
+    <string name="title_activity_maps_view">Map</string>
 </resources>

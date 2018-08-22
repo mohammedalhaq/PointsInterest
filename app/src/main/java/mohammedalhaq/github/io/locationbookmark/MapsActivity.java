@@ -86,7 +86,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         }
 
-
         try {
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 16f));
         } catch (Exception e){
@@ -128,6 +127,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * This callback is triggered when the map is ready to be used.
      * This is where we can add markers or lines, add listeners or move the camera. In this case,
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -140,7 +140,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //lstLatLngs.add(point);
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(point));
-                locationSearch.setText(point.latitude +" , " + point.longitude);
+                locationSearch.setText(point.toString());
             }
         });
 

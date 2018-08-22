@@ -19,6 +19,7 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
+
         Bundle extras = getIntent().getExtras();
         final String loc = extras.getString("location");
         locationText = findViewById(R.id.loc);
@@ -32,7 +33,7 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(FormActivity.this, MapsActivity.class);
                 intent.putExtra("location", loc);
-                intent.putExtra("source", "form");
+                //intent.putExtra("source", "form");
                 startActivity(intent);
             }
         });

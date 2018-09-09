@@ -3,15 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/edit"
-        android:title="Edit"
-        android:icon="@drawable/ic_baseline_edit_24px"
-        app:showAsAction="collapseActionView|ifRoom" />
-
-    <item
         android:id="@+id/share"
         android:icon="@drawable/ic_baseline_share_24px"
         app:showAsAction="collapseActionView|ifRoom"
         android:title="Share"
-         />
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider" />
 </menu>

@@ -43,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        Button confirm = findViewById(R.id.confirmButton);
+        //Button confirm = findViewById(R.id.confirmButton);
         locationSearch = findViewById(R.id.editText);
 
 
@@ -78,7 +78,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Bundle bundle = getIntent().getExtras();
             String source = bundle.getString("source");
             if (source.equals("details")) {
-                confirm.setVisibility(View.GONE);
+                //confirm.setVisibility(View.GONE);
 
             } else if (source.equals("form")){
                 String locationEdit = bundle.getString("location");

@@ -38,7 +38,7 @@ public class FormActivity extends AppCompatActivity {
             }
         });
 
-        //toggles so that tapping opens maps or edittext
+        //toggles so that tapping opens maps or edittext TODO
         locationText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

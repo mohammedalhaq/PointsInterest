@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -22,14 +23,18 @@
             android:inputType="text"
             android:text="523 Caboto Trail" />
 
-
-        <Button
-            android:id="@+id/confirmButton"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/button"
+            android:layout_width="24dp"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:onClick="confirm"
-            android:text="Confirm" />
+            android:background="@color/white"
+            android:src="@drawable/ic_baseline_arrow_forward_24px"
+            android:text="Button" />
 
     </LinearLayout>
 

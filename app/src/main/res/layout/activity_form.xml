@@ -4,56 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context=".FormActivity">
 
-    <EditText
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Title"
-        android:inputType="textPersonName"
-        android:text="teste"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/layout_bg"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/loc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:ems="10"
-        android:focusable="false"
-        android:hint="Location"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/notes"
-        android:layout_width="wrap_content"
-        android:layout_height="47dp"
-        android:layout_marginStart="72dp"
-        android:ems="10"
-        android:hint="Notes"
-        android:inputType="textMultiLine"
-        android:singleLine="false"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loc" />
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textPersonName"
+            android:text="teste"
+            app:layout_constraintStart_toStartOf="parent"
+            android:drawableLeft="@drawable/ic_baseline_place_24px"
+            app:layout_constraintTop_toTopOf="parent" />
+        </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:onClick="confirm"
-        android:text="Confirm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+        <EditText
+            android:id="@+id/loc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/ic_baseline_map_24px"
+            android:ems="10"
+            android:focusable="false"
+            android:hint="Location"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <EditText
+            android:id="@+id/notes"
+            android:layout_width="wrap_content"
+            android:layout_height="47dp"
+            android:layout_marginStart="72dp"
+            android:ems="10"
+            android:hint="Notes"
+            android:inputType="textMultiLine"
+            android:singleLine="false"
+            app:layout_constraintStart_toStartOf="parent"
+            android:drawableLeft="@drawable/ic_baseline_edit_24px"
+            app:layout_constraintTop_toBottomOf="@+id/loc" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="60dp"
+            android:onClick="confirm"
+            android:text="Continue"
+            android:textColor="@color/colorAccent"
+            android:background="@color/white"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notes" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

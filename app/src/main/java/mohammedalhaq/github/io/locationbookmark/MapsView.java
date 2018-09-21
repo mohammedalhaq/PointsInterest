@@ -96,7 +96,7 @@ public class MapsView extends AppCompatActivity implements OnMapReadyCallback {
         MenuItem item = menu.findItem(R.id.share);
         sap = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
 
-        //share button 
+        //share button
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.setType("text/plain");
         shareIntent.putExtra(Intent.EXTRA_TEXT, locationText);

@@ -18,6 +18,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -72,18 +73,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return;
         }
 
-        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
+        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
 
         if (getIntent().getExtras()!=null){
             Bundle bundle = getIntent().getExtras();
             String source = bundle.getString("source");
-            if (source.equals("details")) {
-                //confirm.setVisibility(View.GONE);
-
-            } else if (source.equals("form")){
-                String locationEdit = bundle.getString("location");
-                locationSearch.setText(locationEdit);
-            }
+            String locationEdit = bundle.getString("location");
+            locationSearch.setText(locationEdit);
         }
 
         try {
@@ -144,5 +140,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    public void focusLocation(View view){
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, this);
+        Criteria criteria = new Criteria();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MapsActivity.this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},0);
+            return;
+        }
+
+        Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
+        LatLng currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation
+                , 17.0f));
+        locationSearch.setText(currentLocation.toString());
+        Toast.makeText(this, "Set to current Location", Toast.LENGTH_SHORT).show();
     }
 }

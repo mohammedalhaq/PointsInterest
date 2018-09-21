@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //https://www.androidhive.info/2012/02/android-custom-listview-with-image-and-text/
-                                //adapterView.getAdapter().(i);
+                                adapterView.getAdapter();
                             }
                         });
                 return false;
@@ -183,8 +183,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < data.size(); i++) {
                 String m = data.get(i).keySet().toString();
                 if (m.equals(query)) {
-                    //add to list
-                    System.out.println("matches");
+
 
                 }
             }
@@ -193,30 +192,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onQueryTextChange(String query) {
-            int length = query.length();
-            for(int i =0;i<data.size();i++){
-                String m = data.get(i).keySet().toString().substring(0,length);
-                if (m.equals(query)){
-                    //add to list
-                    System.out.println("matches");
-                }
-            }
 
 
             return true;
         }
     };
-
-
-    //search button handler
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.search) {
-
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
 }

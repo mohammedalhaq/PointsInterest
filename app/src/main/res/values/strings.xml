@@ -10,4 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="input_name">Location Name</string>
+    <string name="input_location">Location (Tap to change)</string>
+    <string name="input_notes">Notes</string>
 </resources>

@@ -7,78 +7,98 @@
     android:background="@color/colorPrimary"
     tools:context=".FormActivity">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/layout_bg"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="168dp">
+
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/name"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="Title"
-            android:inputType="textPersonName"
-            android:text="teste"
-            app:layout_constraintStart_toStartOf="parent"
-            android:drawableLeft="@drawable/ic_baseline_place_24px"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="53dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginStart="96dp"
+            app:layout_constraintBottom_toTopOf="@+id/input_location"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_place_24px"
+                android:ems="10"
+                android:hint="Title"
+                android:inputType="textPersonName"
+                android:text="teste"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.design.widget.TextInputLayout>
 
-
-        <EditText
-            android:id="@+id/loc"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginStart="72dp"
-            android:layout_marginTop="5dp"
-            android:drawableLeft="@drawable/ic_baseline_map_24px"
-            android:ems="10"
-            android:focusable="false"
-            android:hint="Location"
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name" />
+            android:layout_marginBottom="25dp"
+            android:layout_marginStart="96dp"
+            app:layout_constraintBottom_toTopOf="@+id/input_notes"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <EditText
-            android:id="@+id/notes"
+            <EditText
+                android:id="@+id/loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_map_24px"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="Location"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_notes"
             android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:layout_marginStart="72dp"
-            android:ems="10"
-            android:hint="Notes"
-            android:inputType="textMultiLine"
-            android:singleLine="false"
-            app:layout_constraintStart_toStartOf="parent"
-            android:drawableLeft="@drawable/ic_baseline_edit_24px"
-            app:layout_constraintTop_toBottomOf="@+id/loc" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginStart="96dp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_baseline_edit_24px"
+                android:ems="10"
+                android:hint="Notes"
+                android:inputType="textMultiLine"
+                android:singleLine="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/loc" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="60dp"
+            android:layout_marginBottom="268dp"
+            android:background="@color/white"
+            android:drawableRight="@drawable/ic_baseline_arrow_forward_24px"
             android:onClick="confirm"
             android:text="Continue"
             android:textColor="@color/colorAccent"
-            android:background="@color/white"
-            android:drawableRight="@drawable/ic_baseline_arrow_forward_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/notes" />
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

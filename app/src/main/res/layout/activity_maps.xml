@@ -33,14 +33,15 @@
 
         <ImageView
             android:id="@+id/button"
-            android:layout_width="24dp"
+            android:layout_width="36dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginTop="5dp"
-            android:onClick="confirm"
+            android:layout_marginBottom="5dp"
             android:background="@color/white"
+            android:onClick="confirm"
             android:src="@drawable/ic_baseline_arrow_forward_24px"
             android:text="Button" />
 

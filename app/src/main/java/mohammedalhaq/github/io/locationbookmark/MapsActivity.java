@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -59,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        //to open the map on the users current location
+        //TODO to open the map on the users current location
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         //locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, this);
         Criteria criteria = new Criteria();
@@ -98,14 +99,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Geocoder geocoder = new Geocoder(this);
             try {
                 addressList = geocoder.getFromLocationName(location, 1);
+                Address address = addressList.get(0);
+                LatLng searchedLoc = new LatLng(address.getLatitude(), address.getLongitude());
+                mMap.addMarker(new MarkerOptions().position(searchedLoc));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(searchedLoc, 17.0f));
 
-            } catch (IOException e) {
+            } catch (Exception e) {
+                Toast badAddr = Toast.makeText(this, "Address does not exist.", Toast.LENGTH_LONG);
+                badAddr.show();
                 e.printStackTrace();
             }
-            Address address = addressList.get(0);
-            LatLng searchedLoc = new LatLng(address.getLatitude(), address.getLongitude());
-            mMap.addMarker(new MarkerOptions().position(searchedLoc));
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(searchedLoc, 17.0f));
 
         }
 
@@ -136,7 +139,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //lstLatLngs.add(point);
                 mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(point));
-                locationSearch.setText(point.toString());
+
+                getAddr(point);
             }
         });
 
@@ -152,10 +156,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
 
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
-        LatLng currentLocation = new LatLng(location.getLatitude(),location.getLongitude());
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation
-                , 17.0f));
-        locationSearch.setText(currentLocation.toString());
+        LatLng point = new LatLng(location.getLatitude(),location.getLongitude());
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point,17.0f));
+
+        getAddr(point);
         Toast.makeText(this, "Set to current Location", Toast.LENGTH_SHORT).show();
+    }
+
+    //gets the address from a latlng object
+    public void getAddr(LatLng point){
+        Geocoder geocoder = new Geocoder(MapsActivity.this);
+        try {
+            List<Address> addresses = geocoder.getFromLocation(point.latitude, point.longitude, 1);
+            String tappedAddr = addresses.get(0).getAddressLine(0);
+            locationSearch.setText(tappedAddr);
+        } catch (IOException e) {
+            locationSearch.setText(point.latitude +", " + point.longitude);
+            e.printStackTrace();
+        }
     }
 }

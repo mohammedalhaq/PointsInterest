@@ -42,11 +42,7 @@ public class FormActivity extends AppCompatActivity {
         locationText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if (toggle) {
-                    toggle = false;
-                } else {
-                    toggle = true;
-                }
+                toggle = !toggle;
                 locationText.setFocusable(toggle);
                 return false;
             }
@@ -62,7 +58,7 @@ public class FormActivity extends AppCompatActivity {
         intent.putExtra("location", locationText.getText().toString());
         intent.putExtra("notes", notes.getText().toString());
 
-        Toast.makeText(this, locationText.getText().toString() + " added", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, locationText.getText().toString() + " added", Toast.LENGTH_SHORT).show();
         startActivity(intent);
 
     }

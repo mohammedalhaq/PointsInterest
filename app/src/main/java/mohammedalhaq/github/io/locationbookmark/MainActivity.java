@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         titleList.clear();
         locationList.clear();
+        imageList.clear();
 
         //to parse the db
         Cursor cursor = db.query(
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 null,
                 null
         );
-//https://appsandbiscuits.com/listview-tutorial-android-12-ccef4ead27cc
+
         while (cursor.moveToNext()) {
 
             String title = cursor.getString(
@@ -121,16 +122,9 @@ public class MainActivity extends AppCompatActivity {
             String loc = cursor.getString(
                     cursor.getColumnIndexOrThrow(ContractDB.TaskEntry.COLUMN_NAME_LOC));
 
-            //if (initial) {
                 titleList.add(title);
                 locationList.add(loc);
-
-                /*+
-                map.put("title", title);
-                map.put("location", loc);
-                data.add(map);
-                */
-            //}
+                imageList.add(R.drawable.tempbbb);
         }
         cursor.close();
     }
@@ -153,8 +147,18 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.search, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setOnQueryTextListener(queryTextListener);
+        searchView.setOnCloseListener(queryExitListener);
         return true;
     }
+
+    private SearchView.OnCloseListener queryExitListener = new SearchView.OnCloseListener() {
+        @Override
+        public boolean onClose() {
+            listView.setAdapter(adapter);
+
+            return false;
+        }
+    };
 
     //handle seach queries TODO
     private SearchView.OnQueryTextListener queryTextListener = new SearchView.OnQueryTextListener(){
@@ -164,8 +168,12 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onQueryTextSubmit(String query) {
-            ListViewAdapter results = new ListViewAdapter(MainActivity.this, titleList, locationList, imageList );
-            listView.setAdapter(results);
+            ListViewAdapter results = new ListViewAdapter(MainActivity.this, titleResults, locationResults, imgResults);
+
+            titleResults.clear();
+            locationResults.clear();
+            imgResults.clear();
+
             for (int i = 0; i < locationList.size(); i++) {
                 String location = locationList.get(i);
                 String title = titleList.get(i);
@@ -175,26 +183,50 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         locationResults.add(location);
                         titleResults.add(title);
-                        //imgResults.add(img);
+                        imgResults.add(R.drawable.tempbbb);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }
 
-
+            listView.setAdapter(results);
             return false;
         }
 
         @Override
         public boolean onQueryTextChange(String query) {
+            int length = query.length();
 
+            titleResults.clear();
+            locationResults.clear();
+            imgResults.clear();
 
+            ListViewAdapter results = new ListViewAdapter(MainActivity.this, titleResults, locationResults, imgResults);
+
+            for (int i = 0; i < locationList.size(); i++) {
+                String location = locationList.get(i);
+                String title = titleList.get(i);
+                //int img = imageList.get(i);
+
+                String tempLoc = location.substring(0,length);
+                String tempTitle = title.substring(0, length);
+                if ((tempLoc.toLowerCase().equals(query.toLowerCase())) || (tempTitle.toLowerCase().equals(query.toLowerCase()))) {
+                    try {
+                        locationResults.add(location);
+                        titleResults.add(title);
+                        imgResults.add(R.drawable.tempbbb);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            listView.setAdapter(results);
             return true;
         }
-    };
 
-    public static SQLiteDatabase getDb(){
-        return db;
-    }
+        };
+
+
 }

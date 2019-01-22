@@ -25,7 +25,6 @@ public class ListViewAdapter extends ArrayAdapter {
 
     public ListViewAdapter(Activity context, List<String> nameArrayParam, List<String> infoArrayParam, List<Integer> imageIDArrayParam){
         super(context,R.layout.listview_row , nameArrayParam);
-        db = MainActivity.getDb();
 
         this.context=context;
         this.imageIDarray = imageIDArrayParam;
@@ -50,12 +49,11 @@ public class ListViewAdapter extends ArrayAdapter {
         //imageView.setImageResource(imageIDarray.get(position));
         imageView.setImageResource(R.drawable.tempbbb);
 
-        //https://stackoverflow.com/questions/27235891/onclick-listener-for-custom-listview
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MapsView.class);
-                intent.putExtra("name", nameOf);
+                intent.putExtra( "name", nameOf);
                 intent.putExtra("location", locOf);
                 context.startActivity(intent);
             }
@@ -64,28 +62,14 @@ public class ListViewAdapter extends ArrayAdapter {
         rowView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("Delete "+ nameOf + "?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
+
                                 String query = "DELETE FROM " + ContractDB.TaskEntry.TABLE_NAME + " WHERE " +
                                         ContractDB.TaskEntry.COLUMN_NAME_LOC + " = " + locOf;
                                 db.execSQL(query);
                                 //db.delete(ContractDB.TaskEntry.TABLE_NAME, ContractDB.TaskEntry.COLUMN_NAME_LOC, locOf);
-                            }
-                        })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-
-                builder.create();
-
-                return true;
+            return true;
             }
+
         });
 
         rowView.setClickable(true);
